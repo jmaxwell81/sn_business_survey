@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Survey Styles" max_length="40" name="x_kasp_business_su_survey_styles" type="collection">
+        <element label="Color" max_length="100" name="color" type="string"/>
+        <element label="Group" max_length="100" name="group" type="string"/>
+        <element label="Image" max_length="40" name="image" type="user_image"/>
+        <element attributes="edge_encryption_enabled=true" label="Image Link" max_length="100" name="image_link" type="string"/>
+        <element label="Retail Price" max_length="40" name="retail_price" type="string"/>
+        <element display="true" label="Style" max_length="100" name="style" type="string"/>
+    </element>
+</database>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_email">
+    <sys_script_email action="INSERT_OR_UPDATE">
+        <name>survey_one_week_left_script</name>
+        <new_lines_to_html>false</new_lines_to_html>
+        <script><![CDATA[(function runMailScript(current, template, email, email_action, event) {
+
+	var user = new GlideRecord('sys_user');
+	user.get(event.parm1);
+
+	template.print("<a href=\'"+event.parm2+"\'>Link to survey</p>");
+	
+})(current, template, email, email_action, event);]]></script>
+        <sys_class_name>sys_script_email</sys_class_name>
+        <sys_created_by>sebgar01</sys_created_by>
+        <sys_created_on>2016-09-14 22:28:17</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>0e0cfb2a2b3d264045eeaacc17da1588</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>survey_one_week_left_script</sys_name>
+        <sys_package display_value="Business Survey" source="x_kasp_business_su">be072d932b8de2043ff3894319da153c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Survey">be072d932b8de2043ff3894319da153c</sys_scope>
+        <sys_update_name>sys_script_email_0e0cfb2a2b3d264045eeaacc17da1588</sys_update_name>
+        <sys_updated_by>sebgar01</sys_updated_by>
+        <sys_updated_on>2017-04-10 21:38:13</sys_updated_on>
+    </sys_script_email>
+</record_update>

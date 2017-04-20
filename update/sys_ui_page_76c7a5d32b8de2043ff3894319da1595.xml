@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script><![CDATA[var businessSurveyApp = angular.module('businessSurvey',['ngSanitize']);
+
+businessSurveyApp.controller('businessSurveyController',[
+	'$scope',
+	'$http',
+	function($scope, $http){
+		$http.defaults.headers.common.Accept = "application/json";
+		$scope.url = '/api/now/table/';
+		
+		$scope.title = "";
+		$scope.message = "";
+		$scope.body_text = "";
+		$scope.elements = [];
+		$scope.styles = [];
+		$scope.questions = [];
+		$scope.storeSysIds = [];
+		$scope.tableRows = [];
+		$scope.currentSurvey = getParmVal("sysparm_survey");	
+		
+		$scope.submitError = false;
+		
+		$scope.surveyClosed = false;
+		
+		$scope.submitted = false;
+		
+		/** Gets Header Record for survey using the sys_id in the url **/
+		$scope.getHeaderSurvey = function(surveySysId){
+			$http({
+				method: 'GET',
+				url: $scope.url + "x_kasp_business_su_business_surveys?sys_id="+surveySysId,
+				headers: {
+					'X-UserToken':window.g_ck.toString()
+				}
+			}).success(function(data, status){
+				
+				var endDate = data.result[0].end_date;
+				
+				var dateUtil = new GlideAjax('global.ClientDateTimeUtils');
+				dateUtil.addParam('sysparm_name', 'getNowDateTimeDiff');
+				dateUtil.addParam('sysparm_fdt', endDate);
+				dateUtil.addParam('sysparm_difftype','day');
+				dateUtil.getXML(returnFunc);
+				
+				function returnFunc(res){
+					//console.log("here");
+					var diff = res.responseXML.documentElement.getAttribute("answer");
+					//console.log("DIFF "+diff);
+					if(diff <= -1){
+						$scope.surveyClosed = true;
+					}
+				}
+				
+				
+				
+				$scope.title = data.result[0].title;
+				$scope.message = data.result[0].message;
+				$scope.body_text = data.result[0].body_text;
+				$scope.storeSysIds = data.result[0].stores.split(",");
+				$scope.getStoreDetails();
+				$scope.getStyles(surveySysId);
+				
+			}).error(function(data, status){
+				$scope.title = "Error Loading Survey";
+				$scope.message = "";
+				$scope.body_text = "";
+			});
+		};
+		
+		$scope.getStyles = function(surveySysId){
+			$http({
+				method: 'GET',
+				url: $scope.url + 'x_kasp_business_su_styles?parent='+surveySysId,
+				headers: {
+					'X-UserToken': window.g_ck.toString()
+				}
+				
+			}).success(function(data, status){
+				var style = {};
+				var query = "";
+				//console.log(data);
+				for(var i = 0; i < data.result.length;i++){
+					//console.log("STYLES>>" + data.result[i]);
+					style = {
+						link: data.result[i].style.value,
+						order: data.result[i].order,
+						sys_id: data.result[i].sys_id
+					};
+					 
+					$scope.styles.push(style);
+					query += "sys_id=" + style.link;
+					if(i < data.result.length -1){
+						query += "^OR";
+					}
+				}
+				//console.log("Query ==" + query);
+				$scope.getStyleDetails(query);
+				$scope.getQuestions(surveySysId);
+			}).error(function(data, status){
+				
+			});
+		};
+		
+		$scope.getStyleDetails = function(query){
+			$http({
+				method: 'GET',
+				url: $scope.url + 'x_kasp_business_su_survey_styles?sysparm_query='+query,
+				headers: {
+					'X-UserToken': window.g_ck.toString()
+				}
+				
+			}).success(function(data, status){
+				//console.log(data);
+				for(var i = 0 ; i < data.result.length; i++){
+					for(var j = 0 ; j < $scope.styles.length ; j++){
+						if(data.result[i].sys_id == $scope.styles[j].link){
+							$scope.styles[j].group = data.result[i].group;
+							$scope.styles[j].style = data.result[i].style;
+							$scope.styles[j].color = data.result[i].color;
+							$scope.styles[j].price = data.result[i].retail_price;
+							//$scope.styles[j].img =  $sce.trustAsHtml("<img src='"+data.result[i].image_link+"'/>");
+							$scope.styles[j].img = data.result[i].image_link;
+						}
+					}
+				}
+			}).error(function(data,status){
+				
+			});
+		};
+		
+		$scope.getQuestions = function(surveySysId){
+			$http({
+				
+				method: 'GET',
+				url: $scope.url + "x_kasp_business_su_questions?parent="+surveySysId,
+				headers: {
+					'X-UserToken':window.g_ck.toString()
+				}
+				
+			}).success(function(data, status){
+				//console.log("Question Data");
+				//console.log(data);
+				var question = {};
+				
+				for(var i = 0; i < data.result.length; i++){
+				
+					question = {
+						link: data.result[i].question.value,
+						order: data.result[i].order,
+						style: data.result[i].style.value,
+						text: data.result[i].text
+						
+					};
+					$scope.questions.push(question);
+				}
+				$scope.setupElements();
+			}).error(function(data,status){
+				$scope.title = "Error Loading Survey";
+			});
+		};
+		
+		$scope.getStoreDetails = function(){
+			var query = "";
+			for(var i = 0; i < $scope.storeSysIds.length; i++){
+				query += "sys_id="+$scope.storeSysIds[i];
+				if(i < $scope.storeSysIds.length-1){
+					query+="^OR";
+				}
+			}
+			
+			$http({
+				method:"GET",
+				url: $scope.url + "sys_user?sysparm_query=" + query,
+				headers: {
+					'X-UserToken': window.g_ck.toString()
+				}
+			}).success(function(data, status){
+				//console.log("Store details");
+				//console.log(data);
+				var numStores = data.result.length;
+				var numRows = Math.round(numStores/2);
+				var row = {};
+				var storeA;
+				var storeB;
+				for(var i = 0; i < data.result.length;i++){
+					
+					if(storeA == null){
+						
+						storeA = {};
+						storeA.number = data.result[i].last_name;
+						storeA.name = data.result[i].u_display_name;
+						storeA.city = data.result[i].city + ", ";
+						storeA.state = data.result[i].state + " - ";
+						continue;
+					}else if(storeB == null){
+					
+						storeB = {};
+						storeB.number = data.result[i].last_name;
+						storeB.name = data.result[i].u_display_name;
+						storeB.city = data.result[i].city + ", ";
+						storeB.state = data.result[i].state + " - ";
+					}
+					
+					row = {
+						storeA : storeA, 
+						storeB: storeB
+					};
+					$scope.tableRows.push(row);
+					storeA = null;
+					storeB = null;
+				}
+				
+				if(storeA != null){
+					row = {
+						storeA: storeA,
+						storeB: {
+							number:"",
+							name:"",
+							city: "",
+							state: ""
+						}
+					};
+					$scope.tableRows.push(row);
+				}
+				
+				
+			}).error(function(data, status){
+				
+			});
+		};
+		
+		$scope.setupElements = function(){
+			var element = {};
+			//console.log("Building elements section " + $scope.sections.length + " questions " + $scope.questions.length);
+			
+			for(var i = 0; i < $scope.styles.length; i++){
+				//console.log("Looping section " + $scope.sections[i].name);
+				element = {
+					style: $scope.styles[i],
+					order: $scope.styles[i].order,
+					questions: []
+				};
+				for(var j = 0; j < $scope.questions.length; j++){
+					//console.log("Looping section " + $scope.questions[j].name);
+					if($scope.styles[i].link == $scope.questions[j].style){
+						element.questions.push($scope.questions[j]);
+					}
+				}
+				element.questions.sort(function(a,b ){return a.order - b.order;});
+				$scope.elements.push(element);
+			}
+			
+			$scope.elements.sort(function(a,b){return a.order - b.order;});
+			//console.log("Elements " + $scope.sectionElements.length);
+		};
+		
+		/** Driver for submitting all responses
+		*   Calls submitResponse to submit each individual response
+		*/
+		$scope.submitSurvey = function(){
+			var data = {};
+			$scope.submitted = true;
+			jQuery(".element").each(function(i,obj){
+				jQuery(obj).find('.question_box').each(function(j,o){
+					data = $scope.buildResponseObj(o);
+					$scope.submitResponse(data);
+				});
+			});
+			
+		};
+		
+		/** Builds json object for response
+		*   Takes in jQuery object
+		*/
+		$scope.buildResponseObj = function(questionBox){
+			
+			//console.log(jQuery(questionBox).attr('style_id'));
+			//console.log(jQuery(questionBox).attr('question_id'));
+			//console.log(jQuery(questionBox).find('.responses').html());
+			
+			return {
+				survey: $scope.currentSurvey,
+				style: jQuery(questionBox).attr('style_id'),
+				question: jQuery(questionBox).attr('question_id'),
+				response: jQuery(questionBox).find('.responses').html()
+			};
+			
+			
+		};
+		
+		/** Sends response for single question*/
+		$scope.submitResponse = function(responseData){
+			$http({
+				method:"POST",
+				url: $scope.url + 'x_kasp_business_su_responses',
+				headers: {
+					'X-UserToken': window.g_ck.toString(),
+					'Accept':'application/json',
+					'Content-Type':'application/json'
+				},
+				data:responseData
+				
+			}).success(function(data,status){
+	
+			}).error(function(data,status){
+				$scope.submitError = true;
+				$scope.submitted = false;
+			});
+		};
+		
+		$scope.getHeaderSurvey($scope.currentSurvey);
+	}
+	
+]);
+
+function getParmVal(name){
+	var url = document.URL.parseQuery();
+	if(url[name]){
+		return decodeURI(url[name]);
+	}
+	else{
+		return null;
+	}
+}
+
+]]></client_script>
+        <description/>
+        <direct>false</direct>
+        <endpoint>x_kasp_business_su_take_survey.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<head>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-sanitize.js"></script>
+		
+		<style>
+			td{
+				border: solid 0.5px black;
+				padding: 0 1em 0 1em;
+				text-align:center;
+				font-weight: bold;
+			}
+			
+			tr:first-child th:first-child{
+				border-top-left-radius: 0.4em;
+
+			}
+			
+			tr:first-child th:last-child{
+				border-top-right-radius:0.4em;
+			}
+			
+			table{
+				border-collapse: collapse;
+				margin-bottom: 2em;
+				width:100%;
+			    box-shadow: 4px 4px 5px grey;
+			}
+			
+			
+			table.table th.element-head {
+				font-family: "Times New Roman";
+				font-size: 1.2em;
+				color:white !important;
+				font-style:italic;
+				padding: 0 0.3em 0 0.3em;
+				background-color:#12950D;
+				text-align:center;		
+				
+			}
+			
+			table.table td.style_cell{
+				vertical-align:middle;
+				
+			} 
+			
+			
+			.img_cell{
+				padding: 1em 1em 1em 1em;
+			}
+			
+			
+			.question_box{
+				padding: 0em 0em 0em 0em;
+			}
+			
+			.element{
+				padding: 2em 0 0 0;
+				
+			}
+			
+			.responses{
+				word-wrap:break-word;
+				text-align: left;
+				margin-bottom: 2em;
+				min-height: 6em;
+				border: 1px solid #343d47;
+				border-radius: 0.2em;
+				padding: 1em 1em 1em 1em;
+			
+			}
+			
+			.submit-container{
+				text-align:center;
+				margin-bottom: 5em;
+			}
+			
+			.ng-cloak { 
+				display: none !important; 
+			}
+			
+			.box{
+			
+				margin: 50px 200px 0px 200px; 
+				border-style:solid;
+				border-top-left-radius: 10px;
+				border-top-right-radius: 10px;
+				border-bottom-left-radius: 5px;
+				border-bottom-right-radius: 5px;
+				border-color: #12950D;
+				overflow:hidden;
+
+			}
+
+			.box-head{
+				height: 45px;
+				background-color: #12950D;
+				border-color: #12950D;
+				vertical-align: top;
+
+			}
+
+			.box-body{
+				padding: 10px 20px 10px 20px;
+			}
+
+			.box_title{
+				font-family:"Calibri";
+				font-size:30px;
+				font-style: italic;
+				color: white;
+			}
+			.message{
+				font-family:"Calibri";
+				font-size:22px;
+				font-weight:bold;
+				font-style: italic;
+			}
+
+
+			.thanks{
+				font-family:"Calibri";
+				font-size:30px;
+				font-style: italic;
+				color: white;
+
+			}
+			img{
+				max-width:200px;
+			}
+		</style>
+	</head>
+	<body ng-app='businessSurvey'>
+		<div id="main" ng-controller='businessSurveyController' class="ng-cloak">
+			
+			<div class="col-lg-12 col-md-12 col-sm-12" ng-show="surveyClosed">
+				
+				<div class="box">
+					<div class="box-head text-center row">
+						<h4 class="thanks">Sorry!</h4>
+					</div>
+					<div class="box-body text-center row">
+						<p class="message">This Survey has been closed</p>
+					</div>
+				</div>
+				
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12" ng-show="submitted">
+				
+				<div class="box">
+					<div class="box-head text-center row">
+						<h4 class="thanks">Thank you for your reponse!</h4>
+					</div>
+					<div class="box-body text-center row">
+						<p class="message">Your responses have been submitted</p>
+					</div>
+				</div>
+			</div>
+			<div ng-show="!surveyClosed $[AMP]$[AMP] !submitted">
+				<div class="text-center">
+					<img src="ks_ny_black_no_bg.png" width="150" height="75"/>
+				</div>
+				<div>
+					<h3 class="text-center">{{title}}</h3>
+				</div>
+
+				<!-- GREETING MESSAGE-->
+				<div class="col-lg-12 col-md-12 col-sm-12">
+
+					<div class="col-lg-1 col-md-1 col-sm-0"></div>
+					<div class="col-lg-10 col-md-10 col-sm-12 container" ng-bind-html="message">
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-0"></div>
+				</div>
+				<!-- GREETING MESSAGE-->
+
+				<!-- STORE TABLE-->
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<div class="col-lg-1 col-md-1 col-sm-0"></div>
+					<div class="col-lg-10 col-md-10 col-sm-12 container">
+
+						<table id="store_table">
+							<tr ng-repeat="row in tableRows">
+								<td>{{row.storeA.number}}</td><td>{{row.storeA.city}}{{row.storeA.state}}{{row.storeA.name}}</td>
+								<td>{{row.storeB.number}}</td><td>{{row.storeB.city}}{{row.storeB.state}}{{row.storeB.name}}</td>
+							</tr>
+						</table>
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-0"></div>
+				</div>
+				<!-- STORE TABLE-->
+
+				<!-- BODY TEXT -->
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<div class="col-lg-1 col-md-1 col-sm-0"></div>
+					<div class="col-lg-10 col-md-10 col-sm-12 container"  ng-bind-html="body_text"> 
+
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-0"></div>
+				</div>
+				<!-- BODY TEXT -->
+
+				<!-- ELEMENTS -->
+				<div class="col-lg-12 col-md-12 col-sm-12" ng-repeat="element in elements">
+					<div class="col-lg-1 col-md-1 col-sm-0"></div>
+					<div class="col-lg-10 col-md-10  col-sm-12 element col-md-10  container" >	
+						<div  class="table-responsive">
+							<table id="style_table" class="table">
+								<thead>
+									<tr>
+										<th class="element-head">Group</th>
+										<th class="element-head">Style</th>
+										<th class="element-head">Color</th>
+										<th class="element-head">Image</th>
+										<th class="element-head">Retail</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="style_cell">{{element.style.group}}</td>
+										<td class="style_cell">{{element.style.style}}</td>
+										<td class="style_cell">{{element.style.color}}</td>
+										<td class="img_cell">
+											<img src="{{element.style.img}}"/>
+											<!--<p ng-bind-html="element.style.img"></p>-->
+										</td>
+										<td class="style_cell">{{element.style.price}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="question_box" ng-repeat="q in element.questions" style_id="{{element.style.link}}" question_id = "{{q.link}}">
+							<p class="question" ng-bind-html="q.text"></p>
+							<div class="responses" contenteditable="true">
+							</div>
+						</div>
+
+
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-0"></div>
+				</div>
+				<!-- ELEMENTS -->
+
+
+				<div class="col-md-12 col-lg-12 col-sm-12 container" ng-show="submitError">
+					<div class="alert alert-danger">
+						There was an error submitting your responses, please retry or call Support Center
+					</div>
+				</div>
+
+				<div class="submit-container col-lg-12 col-md-12 col-sm-12">
+					<button class='btn btn-lg btn-success' ng-click="submitSurvey()">Submit</button>
+				</div>
+
+			</div>
+		</div>
+		
+	</body>
+</j:jelly>]]></html>
+        <name>take_survey</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>sebgar01</sys_created_by>
+        <sys_created_on>2016-08-10 12:48:26</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>76c7a5d32b8de2043ff3894319da1595</sys_id>
+        <sys_mod_count>340</sys_mod_count>
+        <sys_name>take_survey</sys_name>
+        <sys_package display_value="Business Survey" source="x_kasp_business_su">be072d932b8de2043ff3894319da153c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Survey">be072d932b8de2043ff3894319da153c</sys_scope>
+        <sys_update_name>sys_ui_page_76c7a5d32b8de2043ff3894319da1595</sys_update_name>
+        <sys_updated_by>sebgar01</sys_updated_by>
+        <sys_updated_on>2017-03-17 19:06:49</sys_updated_on>
+    </sys_ui_page>
+</record_update>

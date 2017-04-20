@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="sys_attachment" version="2" view="">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>file_name</element>
+            <list_id display_value="sys_attachment" element="NULL" name="sys_attachment" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">9696fbebc0a80164000bd5df61f3232d</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>glide.maint</sys_created_by>
+            <sys_created_on>2009-03-11 01:05:44</sys_created_on>
+            <sys_id>f310494f4a36232a0149b857d2400142</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>glide.maint</sys_updated_by>
+            <sys_updated_on>2009-03-11 01:05:44</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>content_type</element>
+            <list_id display_value="sys_attachment" element="NULL" name="sys_attachment" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">9696fbebc0a80164000bd5df61f3232d</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>glide.maint</sys_created_by>
+            <sys_created_on>2009-03-11 01:05:44</sys_created_on>
+            <sys_id>f31049514a36232a016cb11e0f9a18d2</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>glide.maint</sys_updated_by>
+            <sys_updated_on>2009-03-11 01:05:44</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>table_name</element>
+            <list_id display_value="sys_attachment" element="NULL" name="sys_attachment" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">9696fbebc0a80164000bd5df61f3232d</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>glide.maint</sys_created_by>
+            <sys_created_on>2009-03-11 01:05:44</sys_created_on>
+            <sys_id>f31049544a36232a00075259169ed294</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>glide.maint</sys_updated_by>
+            <sys_updated_on>2009-03-11 01:05:44</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>table_sys_id</element>
+            <list_id display_value="sys_attachment" element="NULL" name="sys_attachment" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">9696fbebc0a80164000bd5df61f3232d</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>3</position>
+            <sum>false</sum>
+            <sys_created_by>glide.maint</sys_created_by>
+            <sys_created_on>2009-03-11 01:05:44</sys_created_on>
+            <sys_id>f31049574a36232a016d93a6ee83d54e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>glide.maint</sys_updated_by>
+            <sys_updated_on>2009-03-11 01:05:44</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>sys_attachment</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>sebgar01</sys_created_by>
+            <sys_created_on>2017-03-29 21:53:13</sys_created_on>
+            <sys_customer_update>true</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_id>fcdb0575137df24053dc51522244b01e</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>sys_attachment</sys_name>
+            <sys_package display_value="Business Survey" source="x_kasp_business_su">be072d932b8de2043ff3894319da153c</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Business Survey">be072d932b8de2043ff3894319da153c</sys_scope>
+            <sys_update_name>sys_ui_list_sys_attachment_null</sys_update_name>
+            <sys_updated_by>sebgar01</sys_updated_by>
+            <sys_updated_on>2017-03-29 21:53:13</sys_updated_on>
+            <sys_user display_value="Sebastian Gonzalez-Garcia">96e7c5caf58e0100649946d7569884b1</sys_user>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

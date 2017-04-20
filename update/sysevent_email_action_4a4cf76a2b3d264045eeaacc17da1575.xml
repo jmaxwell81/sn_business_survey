@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sysevent_email_action">
+    <sysevent_email_action action="INSERT_OR_UPDATE">
+        <action_insert>false</action_insert>
+        <action_update>false</action_update>
+        <active>true</active>
+        <advanced_condition/>
+        <affected_field_on_event/>
+        <collection>x_kasp_business_su_business_surveys</collection>
+        <condition/>
+        <content_type>text/html</content_type>
+        <description/>
+        <event_name>x_kasp_business_su.one_week_left</event_name>
+        <event_parm_1>false</event_parm_1>
+        <event_parm_2>false</event_parm_2>
+        <exclude_delegates>false</exclude_delegates>
+        <force_delivery>false</force_delivery>
+        <from>Product Test</from>
+        <generation_type>event</generation_type>
+        <group/>
+        <group_field/>
+        <importance/>
+        <include_attachments>false</include_attachments>
+        <item>event.parm1</item>
+        <item_table/>
+        <list/>
+        <list_field/>
+        <mandatory>false</mandatory>
+        <message/>
+        <message_html><![CDATA[<p>Hello store teams,<br /> <br />Don&rsquo;t forget! As part of our test cluster, you received an email with a link to complete the ${title} survey providing feedback to the current product test. This link may be accessed as many times as you&rsquo;d like to share feedback throughout the test window, and your feedback is due in one week. To access the survey please click the link below:</p>
+<p>${mail_script:survey_one_week_left_script}</p>]]></message_html>
+        <message_list/>
+        <message_text/>
+        <name>Survey One Week Left</name>
+        <omit_watermark>true</omit_watermark>
+        <order/>
+        <push_message_only>false</push_message_only>
+        <recipient_fields/>
+        <recipient_groups/>
+        <recipient_users>96e7c5caf58e0100649946d7569884b1</recipient_users>
+        <reply_to/>
+        <send_self>true</send_self>
+        <sms_alternate/>
+        <style/>
+        <subject>Don't Forget! Product Test Feedback Survey Due in 1 Week</subject>
+        <subscribable>false</subscribable>
+        <sys_class_name>sysevent_email_action</sys_class_name>
+        <sys_created_by>sebgar01</sys_created_by>
+        <sys_created_on>2016-09-14 22:28:46</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>4a4cf76a2b3d264045eeaacc17da1575</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>Survey One Week Left</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Business Survey" source="x_kasp_business_su">be072d932b8de2043ff3894319da153c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Survey">be072d932b8de2043ff3894319da153c</sys_scope>
+        <sys_update_name>sysevent_email_action_4a4cf76a2b3d264045eeaacc17da1575</sys_update_name>
+        <sys_updated_by>sebgar01</sys_updated_by>
+        <sys_updated_on>2017-04-10 21:37:52</sys_updated_on>
+        <sys_version>2</sys_version>
+        <template/>
+        <type>email</type>
+        <user/>
+        <user_field/>
+        <weight>0</weight>
+    </sysevent_email_action>
+</record_update>

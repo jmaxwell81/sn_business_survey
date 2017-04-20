@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Questions" max_length="40" name="x_kasp_business_su_questions" type="collection">
+        <element label="Group" max_length="32" name="group" reference="x_kasp_business_su_groups" reference_qual="javascript: new QueStyQual().getGroups(current.parent)" type="reference" use_reference_qualifier="advanced"/>
+        <element attributes="edge_encryption_enabled=true" label="Group Text" max_length="100" name="group_text" type="string"/>
+        <element label="Order" max_length="40" name="order" type="integer"/>
+        <element label="Survey" max_length="32" name="parent" reference="x_kasp_business_su_business_surveys" type="reference"/>
+        <element display="true" label="Question" max_length="32" name="question" reference="x_kasp_business_su_survey_questions" type="reference"/>
+        <element label="Style" max_length="32" name="style" reference="x_kasp_business_su_survey_styles" reference_qual="javascript: new QueStyQual().getStyles(current.parent)" type="reference" use_dependent_field="true" use_reference_qualifier="advanced"/>
+        <element attributes="edge_encryption_enabled=true" label="Text" max_length="4000" name="text" type="html"/>
+        <index name="index">
+            <element name="parent"/>
+        </index>
+        <index name="index2">
+            <element name="question"/>
+        </index>
+        <index name="index3">
+            <element name="style"/>
+        </index>
+        <index name="index4">
+            <element name="group"/>
+        </index>
+    </element>
+</database>

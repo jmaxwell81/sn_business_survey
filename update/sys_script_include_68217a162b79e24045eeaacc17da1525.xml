@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_kasp_business_su.QueStyQual</api_name>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>QueStyQual</name>
+        <script><![CDATA[var QueStyQual = Class.create();
+QueStyQual.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+
+	getStyles:function(surveySysId){
+		
+		var styles = '';
+		
+		var style = new GlideRecord('x_kasp_business_su_styles');
+		style.addQuery('parent',surveySysId);
+		style.query();
+		
+		while(style.next()){
+			if(styles.length > 0){
+				styles +=  (","+ style.getValue('style'));
+			}else{
+				styles = style.getValue('style');
+			}
+			style.getValue('style');
+		}
+		
+		return 'sys_idIN' + styles;
+		
+	},
+	
+	getGroups: function(surveySysId){
+		var group = new GlideRecord('x_kasp_business_su_groups');
+		group.addQuery('survey',surveySysId);
+		group.query();
+		
+		var groupSysIds = [];
+		while(group.next()){
+			groupSysIds.push(group.sys_id);
+		}
+		
+		return 'sys_idIN' + groupSysIds.join();
+	},
+	
+    type: 'QueStyQual'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>sebgar01</sys_created_by>
+        <sys_created_on>2016-09-13 22:32:02</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>68217a162b79e24045eeaacc17da1525</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>QueStyQual</sys_name>
+        <sys_package display_value="Business Survey" source="x_kasp_business_su">be072d932b8de2043ff3894319da153c</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Survey">be072d932b8de2043ff3894319da153c</sys_scope>
+        <sys_update_name>sys_script_include_68217a162b79e24045eeaacc17da1525</sys_update_name>
+        <sys_updated_by>sebgar01</sys_updated_by>
+        <sys_updated_on>2017-03-31 18:18:02</sys_updated_on>
+    </sys_script_include>
+</record_update>

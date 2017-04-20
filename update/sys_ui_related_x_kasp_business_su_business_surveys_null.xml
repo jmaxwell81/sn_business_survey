@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_related sys_domain="global" table="x_kasp_business_su_business_surveys" version="2" view="">
+        <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
+            <filter/>
+            <list_id display_value="Business Surveys - Default view" name="x_kasp_business_su_business_surveys" related_list="NULL" sys_domain="global" view="Default view">db5fe2522b79e24045eeaacc17da157c</list_id>
+            <order_by/>
+            <position>0</position>
+            <related_list>x_kasp_business_su_styles.parent</related_list>
+            <sys_class_name>sys_ui_related_list_entry</sys_class_name>
+            <sys_created_by>sebgar01</sys_created_by>
+            <sys_created_on>2016-09-13 22:13:56</sys_created_on>
+            <sys_id>135fe2522b79e24045eeaacc17da157d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>sebgar01</sys_updated_by>
+            <sys_updated_on>2016-09-13 22:13:56</sys_updated_on>
+        </sys_ui_related_list_entry>
+        <sys_ui_related_list_entry action="INSERT_OR_UPDATE">
+            <filter/>
+            <list_id display_value="Business Surveys - Default view" name="x_kasp_business_su_business_surveys" related_list="NULL" sys_domain="global" view="Default view">db5fe2522b79e24045eeaacc17da157c</list_id>
+            <order_by/>
+            <position>1</position>
+            <related_list>x_kasp_business_su_questions.parent</related_list>
+            <sys_class_name>sys_ui_related_list_entry</sys_class_name>
+            <sys_created_by>sebgar01</sys_created_by>
+            <sys_created_on>2016-09-13 22:13:56</sys_created_on>
+            <sys_id>d35fe2522b79e24045eeaacc17da157d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>sebgar01</sys_updated_by>
+            <sys_updated_on>2016-09-13 22:13:56</sys_updated_on>
+        </sys_ui_related_list_entry>
+        <sys_ui_related_list action="INSERT_OR_UPDATE">
+            <calculated_name>Business Surveys - Default view</calculated_name>
+            <filter/>
+            <name>x_kasp_business_su_business_surveys</name>
+            <order_by/>
+            <position/>
+            <related_list/>
+            <sys_class_name>sys_ui_related_list</sys_class_name>
+            <sys_created_by>sebgar01</sys_created_by>
+            <sys_created_on>2016-09-13 22:13:56</sys_created_on>
+            <sys_customer_update>true</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_id>db5fe2522b79e24045eeaacc17da157c</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Business Surveys - Default view</sys_name>
+            <sys_package display_value="Business Survey" source="x_kasp_business_su">be072d932b8de2043ff3894319da153c</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Business Survey">be072d932b8de2043ff3894319da153c</sys_scope>
+            <sys_update_name>sys_ui_related_x_kasp_business_su_business_surveys_null</sys_update_name>
+            <sys_updated_by>sebgar01</sys_updated_by>
+            <sys_updated_on>2016-09-13 22:13:56</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_related_list>
+    </sys_ui_related>
+</record_update>

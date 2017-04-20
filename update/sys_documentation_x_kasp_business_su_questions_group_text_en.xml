@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="group_text" label="Group Text" language="en" table="x_kasp_business_su_questions">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>group_text</element>
+            <help/>
+            <hint/>
+            <label>Group Text</label>
+            <language>en</language>
+            <name>x_kasp_business_su_questions</name>
+            <plural>Group Texts</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>sebgar01</sys_created_by>
+            <sys_created_on>2017-04-12 14:56:14</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>1da2330e0f0672c04789e34be1050e95</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Group Text</sys_name>
+            <sys_package display_value="Business Survey" source="x_kasp_business_su">be072d932b8de2043ff3894319da153c</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Business Survey">be072d932b8de2043ff3894319da153c</sys_scope>
+            <sys_update_name>sys_documentation_x_kasp_business_su_questions_group_text_en</sys_update_name>
+            <sys_updated_by>sebgar01</sys_updated_by>
+            <sys_updated_on>2017-04-12 14:56:14</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

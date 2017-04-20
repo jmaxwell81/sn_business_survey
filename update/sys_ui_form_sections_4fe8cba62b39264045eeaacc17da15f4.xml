@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_form_sections form_id="4fe8cba62b39264045eeaacc17da15f4" sys_domain="global" table="x_kasp_business_su_business_surveys" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>sebgar01</sys_created_by>
+            <sys_created_on>2016-09-14 18:44:04</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>03e8cba62b39264045eeaacc17da15f5</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_kasp_business_su_business_surveys" name="x_kasp_business_su_business_surveys" sys_domain="global" view="Default view">4fe8cba62b39264045eeaacc17da15f4</sys_ui_form>
+            <sys_ui_section caption="NULL" display_value="" name="x_kasp_business_su_business_surveys" sys_domain="global" view="Default view">a31c32672b4d26043ff3894319da1539</sys_ui_section>
+            <sys_updated_by>sebgar01</sys_updated_by>
+            <sys_updated_on>2016-09-14 18:44:04</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>2</position>
+            <sys_created_by>sebgar01</sys_created_by>
+            <sys_created_on>2016-09-14 18:44:04</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_id>c7e8cba62b39264045eeaacc17da15f5</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_kasp_business_su_business_surveys" name="x_kasp_business_su_business_surveys" sys_domain="global" view="Default view">4fe8cba62b39264045eeaacc17da15f4</sys_ui_form>
+            <sys_ui_section caption="Settings" display_value="Settings" name="x_kasp_business_su_business_surveys" sys_domain="global" view="Default view">c3e8cba62b39264045eeaacc17da15f5</sys_ui_section>
+            <sys_updated_by>sebgar01</sys_updated_by>
+            <sys_updated_on>2016-09-14 18:47:26</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>x_kasp_business_su_business_surveys</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>sebgar01</sys_created_by>
+            <sys_created_on>2016-09-14 18:44:04</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_domain>global</sys_domain>
+            <sys_id>4fe8cba62b39264045eeaacc17da15f4</sys_id>
+            <sys_mod_count>6</sys_mod_count>
+            <sys_name>x_kasp_business_su_business_surveys</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Business Survey" source="x_kasp_business_su">be072d932b8de2043ff3894319da153c</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Business Survey">be072d932b8de2043ff3894319da153c</sys_scope>
+            <sys_update_name>sys_ui_form_sections_4fe8cba62b39264045eeaacc17da15f4</sys_update_name>
+            <sys_updated_by>sebgar01</sys_updated_by>
+            <sys_updated_on>2016-09-14 18:53:29</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>

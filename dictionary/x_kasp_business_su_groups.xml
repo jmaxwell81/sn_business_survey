@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Groups" max_length="40" name="x_kasp_business_su_groups" type="collection">
+        <element display="true" label="Group" max_length="100" name="group" type="string"/>
+        <element label="Style" max_length="32" name="style" reference="x_kasp_business_su_survey_styles" type="reference"/>
+        <element label="Survey" max_length="32" name="survey" reference="x_kasp_business_su_business_surveys" type="reference"/>
+        <index name="index">
+            <element name="survey"/>
+        </index>
+        <index name="index2">
+            <element name="style"/>
+        </index>
+    </element>
+</database>

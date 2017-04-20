@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="question" label="Question" language="en" table="x_kasp_business_su_survey_questions">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>question</element>
+            <help/>
+            <hint/>
+            <label>Question</label>
+            <language>en</language>
+            <name>x_kasp_business_su_survey_questions</name>
+            <plural>Questions</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>sebgar01</sys_created_by>
+            <sys_created_on>2016-08-11 13:21:49</sys_created_on>
+            <sys_customer_update>false</sys_customer_update>
+            <sys_id>c319f2a32b4d26043ff3894319da1576</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Question</sys_name>
+            <sys_package display_value="Business Survey" source="x_kasp_business_su">be072d932b8de2043ff3894319da153c</sys_package>
+            <sys_policy/>
+            <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+            <sys_scope display_value="Business Survey">be072d932b8de2043ff3894319da153c</sys_scope>
+            <sys_update_name>sys_documentation_x_kasp_business_su_survey_questions_question_en</sys_update_name>
+            <sys_updated_by>sebgar01</sys_updated_by>
+            <sys_updated_on>2016-08-11 13:21:49</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

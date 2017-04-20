@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_filter">
+    <sys_filter action="INSERT_OR_UPDATE">
+        <filter table="sys_user">nameSTARTSWITHgo^nameISNOTEMPTY^EQ<item endquery="false" field="name" goto="false" newquery="false" operator="STARTSWITH" or="false" value="go"/>
+            <item endquery="false" field="name" goto="false" newquery="false" operator="ISNOTEMPTY" or="false" value=""/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </filter>
+        <group/>
+        <last_used>2017-03-07 21:31:34</last_used>
+        <mobile>true</mobile>
+        <roles/>
+        <sys_class_name>sys_filter</sys_class_name>
+        <sys_created_by>amyshe03</sys_created_by>
+        <sys_created_on>2017-03-07 21:31:34</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_id>01e3f3ee13ddb6802c145ecf3244b0c7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>mobile</sys_name>
+        <sys_package display_value="Business Survey" source="x_kasp_business_su">be072d932b8de2043ff3894319da153c</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Business Survey">be072d932b8de2043ff3894319da153c</sys_scope>
+        <sys_update_name>sys_filter_01e3f3ee13ddb6802c145ecf3244b0c7</sys_update_name>
+        <sys_updated_by>amyshe03</sys_updated_by>
+        <sys_updated_on>2017-03-07 21:31:34</sys_updated_on>
+        <table>sys_user</table>
+        <title>mobile</title>
+        <user display_value="Amy Shearer">00439f6a87b325002d2d098e59434d1a</user>
+    </sys_filter>
+</record_update>

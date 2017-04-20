@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Business Surveys" max_length="40" name="x_kasp_business_su_business_surveys" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Body Text" max_length="4000" name="body_text" type="html"/>
+        <element label="End Date" mandatory="true" max_length="40" name="end_date" type="glide_date"/>
+        <element label="Link" max_length="1024" name="link" read_only="true" type="url"/>
+        <element attributes="edge_encryption_enabled=true" hint="hint" label="Greeting" max_length="1000" name="message" type="html"/>
+        <element display="true" label="Name" max_length="100" name="name" type="string"/>
+        <element attributes="slushbucket_ref_no_expand=true,no_sort=true" default="Kristina Fiore,&#13;&#10;Caroline Dakin,&#13;&#10;Christine Parrilli," label="Results Recipients" max_length="1024" name="results_recipients" reference="sys_user" reference_qual="first_name!=Store^active=true^EQ" reference_qual_condition="first_name!=Store^active=true^EQ" type="glide_list"/>
+        <element label="Start Date" mandatory="true" max_length="40" name="start_date" type="glide_date"/>
+        <element attributes="slushbucket_ref_no_expand=true,no_sort=true" default="Store 3265,&#13;&#10;Store 3222,&#13;&#10;Store 3200,&#13;&#10;Store 3049,&#13;&#10;Store 3067,&#13;&#10;Store 3032,&#13;&#10;Store 3061,&#13;&#10;Store 3030,&#13;&#10;Store 3043,&#13;&#10;Store 3299,&#13;&#10;Store 3201,&#13;&#10;Store 3038,&#13;&#10;Store 3215,&#13;&#10;Store 3050,&#13;&#10;Store 3108,&#13;&#10;Store 3048,&#13;&#10;Store 3053,&#13;&#10;Store 3041,&#13;&#10;Store 3037,&#13;&#10;Store 3189" label="Stores" max_length="1024" name="stores" reference="sys_user" reference_qual="first_name=Store^active=true^EQ" reference_qual_condition="first_name=Store^active=true^EQ" type="glide_list"/>
+        <element label="Title" max_length="100" name="title" type="string"/>
+    </element>
+</database>

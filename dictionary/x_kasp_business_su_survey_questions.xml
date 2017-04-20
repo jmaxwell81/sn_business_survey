@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Survey Questions" max_length="40" name="x_kasp_business_su_survey_questions" type="collection">
+        <element default="true" label="Active" max_length="40" name="active" type="boolean"/>
+        <element display="true" label="Question" max_length="1000" name="question" type="string"/>
+    </element>
+</database>
