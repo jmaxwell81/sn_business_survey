@@ -4,13 +4,13 @@
         <abort_action>false</abort_action>
         <access>package_private</access>
         <action_delete>false</action_delete>
-        <action_insert>true</action_insert>
+        <action_insert>false</action_insert>
         <action_label/>
         <action_name/>
         <action_query>false</action_query>
         <action_run_at>server</action_run_at>
         <action_update>true</action_update>
-        <active>true</active>
+        <active>false</active>
         <add_message>false</add_message>
         <advanced>true</advanced>
         <application/>
@@ -23,7 +23,7 @@
         <filter_condition/>
         <is_rest>false</is_rest>
         <message/>
-        <name>print image</name>
+        <name>Create Image Link</name>
         <onclick/>
         <order>100</order>
         <priority>100</priority>
@@ -45,8 +45,8 @@
         <sys_customer_update>true</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_id>1f37390013d922002c147ecf3244b08d</sys_id>
-        <sys_mod_count>10</sys_mod_count>
-        <sys_name>print image</sys_name>
+        <sys_mod_count>12</sys_mod_count>
+        <sys_name>Create Image Link</sys_name>
         <sys_overrides/>
         <sys_package display_value="Business Survey" source="x_kasp_business_su">be072d932b8de2043ff3894319da153c</sys_package>
         <sys_policy/>
@@ -54,7 +54,7 @@
         <sys_scope display_value="Business Survey">be072d932b8de2043ff3894319da153c</sys_scope>
         <sys_update_name>sys_script_1f37390013d922002c147ecf3244b08d</sys_update_name>
         <sys_updated_by>sebgar01</sys_updated_by>
-        <sys_updated_on>2017-04-11 13:37:22</sys_updated_on>
+        <sys_updated_on>2017-04-28 19:41:11</sys_updated_on>
         <template/>
         <when>after</when>
     </sys_script>

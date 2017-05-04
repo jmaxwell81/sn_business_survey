@@ -50,7 +50,7 @@
         <sys_customer_update>true</sys_customer_update>
         <sys_domain>global</sys_domain>
         <sys_id>4a4cf76a2b3d264045eeaacc17da1575</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>6</sys_mod_count>
         <sys_name>Survey One Week Left</sys_name>
         <sys_overrides/>
         <sys_package display_value="Business Survey" source="x_kasp_business_su">be072d932b8de2043ff3894319da153c</sys_package>
@@ -59,7 +59,7 @@
         <sys_scope display_value="Business Survey">be072d932b8de2043ff3894319da153c</sys_scope>
         <sys_update_name>sysevent_email_action_4a4cf76a2b3d264045eeaacc17da1575</sys_update_name>
         <sys_updated_by>sebgar01</sys_updated_by>
-        <sys_updated_on>2017-04-10 21:37:52</sys_updated_on>
+        <sys_updated_on>2017-05-01 21:26:31</sys_updated_on>
         <sys_version>2</sys_version>
         <template/>
         <type>email</type>

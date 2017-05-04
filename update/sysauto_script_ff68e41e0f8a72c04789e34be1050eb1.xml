@@ -20,17 +20,21 @@
 		var activeSurveys = [];
 		var srvy = new GlideRecord('x_kasp_business_su_business_surveys');	srvy.addEncodedQuery('start_date<=javascript:gs.daysAgoEnd(0)^end_date>javascript:gs.daysAgoEnd(0)');
 		srvy.query();
-		if(srvy.next()){
-			activeSurveys.push(srvy);
+		while(srvy.next()){
+			activeSurveys.push(srvy.sys_id+"");
 		}
 		return activeSurveys;
 	};
 	
 	var surveyList = getActiveSurveys();
+	var survey;
 	
-	for(var i=0; i < surveyList.length;i++){
-		gs.info("Business Survey sending responses for " + surveyList[i].getValue('name'));
-		gs.eventQueue('x_kasp_business_su.weekly_report_event',surveyList[i],null,null,null);
+	for(var i = 0; i < surveyList.length;i++){
+		survey = new GlideRecord('x_kasp_business_su_business_surveys');
+		survey.get(surveyList[i]);
+		gs.info("Business Survey sending responses for " + survey.getValue('name'));
+		gs.eventQueue('x_kasp_business_su.weekly_report_event',survey);
+		
 	}
 	
 	
@@ -40,7 +44,7 @@
         <sys_created_on>2017-04-12 18:53:13</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>ff68e41e0f8a72c04789e34be1050eb1</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Fire Event For Weekly Report</sys_name>
         <sys_package display_value="Business Survey" source="x_kasp_business_su">be072d932b8de2043ff3894319da153c</sys_package>
         <sys_policy/>
@@ -48,7 +52,7 @@
         <sys_scope display_value="Business Survey">be072d932b8de2043ff3894319da153c</sys_scope>
         <sys_update_name>sysauto_script_ff68e41e0f8a72c04789e34be1050eb1</sys_update_name>
         <sys_updated_by>sebgar01</sys_updated_by>
-        <sys_updated_on>2017-04-12 18:55:40</sys_updated_on>
+        <sys_updated_on>2017-04-25 21:41:44</sys_updated_on>
         <upgrade_safe>false</upgrade_safe>
     </sysauto_script>
 </record_update>
